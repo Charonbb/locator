@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Местоположение</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Локатор</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <div id="map"></div>
-    <button id="getLocationBtn">Узнать местоположение</button>
-  </div>
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgeFx_l-lR_IOXQibDfDkUnznwsG51o9k&callback=initMap" async defer></script>
-  <script src="script.js"></script>
+<div id="map"></div>
+<button id="locateBtn">Узнать местоположение</button>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgeFx_l-lR_IOXQibDfDkUnznwsG51o9k&callback=initMap" async defer></script>
+<script src="script.js"></script>
+<script src="./main.js"></script>
 </body>
 </html>

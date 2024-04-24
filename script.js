@@ -1,27 +1,40 @@
+let map;
+let marker;
+
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
-      center: {lat: -34.397, lng: 150.644}
-    });
-  
-    document.getElementById('getLocationBtn').addEventListener('click', function() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-  
-          var marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-            title: 'Вы здесь'
-          });
-  
-          map.setCenter(pos);
-        });
-      } else {
-        alert('Геолокация не поддерживается вашим браузером');
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 0, lng: 0 },
+    zoom: 2,
+    mapTypeControl: false,
+    fullscreenControl: false,
+    streetViewControl: false,
+  });
+
+  marker = new google.maps.Marker({
+    map,
+    position: { lat: 0, lng: 0 },
+  });
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        map.setCenter(pos);
+        map.setZoom(15); // Приближаем карту
+        marker.setPosition(pos);
+      },
+      () => {
+        alert("Ошибка: доступ к геолокации отклонён.");
       }
-    });
+    );
+  } else {
+    alert("Ошибка: ваш браузер не поддерживает геолокацию.");
   }
+}
+
+document.getElementById("locateBtn").addEventListener("click", getLocation);
